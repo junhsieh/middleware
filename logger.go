@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"log"
+	//"log"
 	"net/http"
 )
 
@@ -20,12 +20,12 @@ func LoggerHandler(h http.Handler) http.Handler {
 }
 
 func (l *Logger) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	host := r.Host
-	addr := r.RemoteAddr
-	url := r.URL
-	uri := r.RequestURI
+	//host := r.Host
+	//addr := r.RemoteAddr
+	//url := r.URL
+	//uri := r.RequestURI
 
-	log.Printf("Before: %v; %v; %v; %v", host, addr, url, uri)
+	//log.Printf("Before: %v; %v; %v; %v", host, addr, url, uri)
 
 	l.handler.ServeHTTP(w, r)
 
