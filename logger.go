@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	//"log"
+	"log"
 	"net/http"
 )
 
@@ -23,9 +23,19 @@ func (l *Logger) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//host := r.Host
 	//addr := r.RemoteAddr
 	//url := r.URL
+
+	// r.URL.Scheme will be empty if you're accessing the HTTP server not from an HTTP proxy,
+	// a browser can issue a relative HTTP request instead of a absolute URL.
+	// Additionally, you could check in the server/handler whether you get a
+	// relative or absolute URL in the request by calling the IsAbs() method.
+	// Reference: http://stackoverflow.com/questions/6899069/why-are-request-url-host-and-scheme-blank-in-the-development-server
+	//scheme := r.URL.Scheme
+	//isAbs := r.URL.IsAbs()
+
 	//uri := r.RequestURI
 
 	//log.Printf("Before: %v; %v; %v; %v", host, addr, url, uri)
+	log.Printf("DEBUG_LOGGER: Inside")
 
 	l.handler.ServeHTTP(w, r)
 
