@@ -5,20 +5,23 @@ import (
 	"net/http"
 )
 
-// Any struct with the method ServeHTTP(http.ResponseWriter, *http.Request) will be
-// implementing http.Handler and will be usable with the Go muxer (http.Handle(pattern, handler) function).
+// Logger ...
 type Logger struct {
 	handler http.Handler
 }
 
+// NewLogger ...
 func NewLogger(h http.Handler) *Logger {
 	return &Logger{handler: h}
 }
 
+// LoggerHandler ...
 func LoggerHandler(h http.Handler) http.Handler {
 	return NewLogger(h)
 }
 
+// Any struct with the method ServeHTTP(http.ResponseWriter, *http.Request) will be
+// implementing http.Handler and will be usable with the Go muxer (http.Handle(pattern, handler) function).
 func (l *Logger) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	//host := r.Host
 	//addr := r.RemoteAddr
