@@ -39,6 +39,8 @@ func AuthUserHandler(store *sessions.FilesystemStore, sessionName string) func(h
 
 			o.AddData("welcome", "Welcom, "+session.Values["Username"].(string))
 
+			h.ServeHTTP(w, r)
+
 			// TODO: Add a logic to support both session/cookie and Header/Authorization
 			/*
 				Authorization := r.Header.Get("Authorization")
