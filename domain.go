@@ -15,7 +15,7 @@ func DomainHandler(allowedDomain string) func(h http.Handler) http.Handler {
 			if r.Host == allowedDomain {
 				h.ServeHTTP(w, r)
 			} else {
-				o := r.Context().Value("iojson").(*iojson.IOJSON)
+				o := r.Context().Value(iojson.CKey).(*iojson.IOJSON)
 				o.AddError("Invalid domain")
 			}
 		})

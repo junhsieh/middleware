@@ -13,7 +13,7 @@ func AuthUserHandler(store *sessions.FilesystemStore, sessionName string) func(h
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			log.Printf("DEBUG_AuthUser: Inside")
 
-			o := r.Context().Value("iojson").(*iojson.IOJSON)
+			o := r.Context().Value(iojson.CKey).(*iojson.IOJSON)
 
 			// Get a session. Get() always returns a session, even if empty.
 			session, err := store.Get(r, sessionName)
