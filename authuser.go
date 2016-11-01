@@ -8,7 +8,7 @@ import (
 )
 
 // AuthUserHandler ...
-func AuthUserHandler(store *sessions.FilesystemStore, sessionName string) func(h http.Handler) http.Handler {
+func AuthUserHandler(store *sessions.FilesystemStore, sessionName string) func(http.Handler) http.Handler {
 	return func(h http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			log.Printf("DEBUG_AuthUser: Inside")
